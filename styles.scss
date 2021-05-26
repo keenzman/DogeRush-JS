@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Fira+Mono&family=Roboto+Mono:wght@100&family=Work+Sans:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$main-font: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+
+.canvas__container {
+  border: 3px solid black;
+  top: 50%;
+}
