@@ -6,12 +6,12 @@ canvas.height = 500;
 
 let score = 0;
 let gameFrame = 0;
-ctx.font = "50px Georgia";
+ctx.font = "50px Monospace";
 
 // Mouse Interaction
 // Gets the (0,0) coords from inside the box we defined, and not the edge of the default browser canvas
 let canvasPosition = canvas.getBoundingClientRect();
-console.log(canvasPosition);
+// console.log(canvasPosition);
 
 const mouse = {
   x: canvas.width / 2,
@@ -57,10 +57,10 @@ class Player {
     // We want both x and y to change, so no else conditions
     // The 30 is used to stop the player teleporting instantly. Basically acts as delay.
     if (mouse.x != this.x) {
-      this.x -= dx / 10;
+      this.x -= dx / 5;
     }
     if (mouse.y != this.y) {
-      this.y -= dy / 10;
+      this.y -= dy / 5;
     }
   }
   draw() {
@@ -79,3 +79,76 @@ class Player {
   }
 }
 const player = new Player();
+
+// Coins
+const coinsArr = [];
+class Coin {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    // The coins rise up from the bottom edge of canvas + 100
+    this.y = canvas.height + 100;
+    this.radius = 50;
+    this.speed = Math.random() * 5 + 1;
+    this.distance;
+    this.counted = false;
+  }
+  update() {
+    this.y -= this.speed;
+    const dx = this.x - player.x;
+    const dy = this.y - player.y;
+    this.distance = Math.sqrt(dx * dx + dy * dy);
+  }
+  draw() {
+    ctx.fillStyle = "goldenrod";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.closePath();
+    ctx.stroke();
+  }
+}
+
+function handleCoin() {
+  // Every 50 frames, add a coin to the array
+  if (gameFrame % 50 == 0) {
+    coinsArr.push(new Coin());
+    // console.log(coinsArr.length);
+  }
+  for (let i = 0; i < coinsArr.length; i++) {
+    // For each elem, call associated update and draw methods
+    coinsArr[i].update();
+    coinsArr[i].draw();
+  }
+  for (let i = 0; i < coinsArr.length; i++) {
+    // Note that the 0 - bit is to stop the coins from disappearing suddenly
+    if (coinsArr[i].y < 0 - coinsArr[i].radius * 2) {
+      // Removing one coin so that the arr. doesn't grow endlessly
+      coinsArr.splice(i, 1);
+    }
+    // circle collision algo
+    if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
+      // console.log('collision');
+      // count scores by 1 for each unique coin
+      if (!coinsArr[i].counted) {
+        score++;
+        coinsArr[i].counted = true;
+        coinsArr.splice(i, 1);
+      }
+    }
+  }
+}
+
+// Animation Loop
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  handleCoin();
+  player.update();
+  player.draw();
+  // score placeholder
+  ctx.fillStyle = "black";
+  ctx.fillText("score: " + score, 10, 50);
+  gameFrame++;
+  // console.log(gameFrame);
+  requestAnimationFrame(animate);
+}
+animate();
