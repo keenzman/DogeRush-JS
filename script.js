@@ -103,7 +103,7 @@ class Coin {
   constructor() {
     this.xAxis = Math.random() * canvas.width;
     // The coins rise up from the bottom edge of canvas + 100
-    this.yAxis = canvas.height + 100;
+    this.yAxis = Math.random() * (canvas.height - 150) + 100;
     this.radius = 40;
     this.speed = Math.random() * 5 + 1;
     this.distance;
@@ -119,12 +119,12 @@ class Coin {
     );
   }
   draw() {
-    ctx.fillStyle = "goldenrod";
-    ctx.beginPath();
-    ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.closePath();
-    ctx.stroke();
+    // ctx.fillStyle = "goldenrod";
+    // ctx.beginPath();
+    // ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI * 2);
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
 
     ctx.drawImage(
       dogeCoin,
@@ -178,7 +178,7 @@ function animate() {
   player.draw();
   // score placeholder
   ctx.fillStyle = "white";
-  ctx.fillText("wow_suchCoins: " + score, 270, 50);
+  ctx.fillText("wow_suchCoins: " + score, 270, 45);
   gameFrame++;
   // console.log(gameFrame);
   requestAnimationFrame(animate);
