@@ -13,22 +13,22 @@ ctx.font = "50px Monospace";
 let canvasPosition = canvas.getBoundingClientRect();
 // console.log(canvasPosition);
 
-const mouse = {
+const mouseObj = {
   horizontalPos: canvas.width / 2,
   verticalPos: canvas.height / 2,
   click: false,
 };
 
 canvas.addEventListener("mousedown", function (event) {
-  mouse.click = true;
+  mouseObj.click = true;
   // getting the x,y coords from the bounded canvas positions
-  mouse.horizontalPos = event.x - canvasPosition.left;
-  mouse.verticalPos = event.y - canvasPosition.top;
+  mouseObj.horizontalPos = event.x - canvasPosition.left;
+  mouseObj.verticalPos = event.y - canvasPosition.top;
   // console.log(mouse.x, mouse.y)
 });
 
 canvas.addEventListener("mousedown", function (event) {
-  mouse.click = false;
+  mouseObj.click = false;
 });
 
 class Player {
@@ -52,23 +52,22 @@ class Player {
   }
   // update player pos
   update() {
-    const dx = this.xAxis - mouse.horizontalPos;
-    const dy = this.yAxis - mouse.verticalPos;
+    const dx = this.xAxis - mouseObj.horizontalPos;
+    const dy = this.yAxis - mouseObj.verticalPos;
     // We want both x and y to change, so no else conditions
     // The 30 is used to stop the player teleporting instantly. Basically acts as delay.
-    if (mouse.horizontalPos != this.xAxis) {
+    if (mouseObj.horizontalPos != this.xAxis) {
       this.xAxis -= dx / 5;
     }
-    if (mouse.verticalPos != this.yAxis) {
+    if (mouseObj.verticalPos != this.yAxis) {
       this.yAxis -= dy / 5;
     }
   }
   draw() {
-    if (mouse.click) {
-      ctx.lineWidth = 0.2;
+    if (mouseObj.click) {
       ctx.beginPath();
       ctx.moveTo(this.xAxis, this.yAxis);
-      ctx.lineTo(mouse.horizontalPos, mouse.verticalPos);
+      ctx.lineTo(mouseObj.horizontalPos, mouseObj.verticalPos);
       ctx.stroke();
     }
     ctx.fillStyle = "red";
@@ -115,17 +114,13 @@ function handleCoin() {
     // console.log(coinsArr.length);
   }
   for (let i = 0; i < coinsArr.length; i++) {
+    if (coinsArr[i].y < 0 - coinsArr[i].radius * 2) {
+      coinsArr.splice(i, 1);
+    }
     // For each elem, call associated update and draw methods
     coinsArr[i].update();
     coinsArr[i].draw();
-  }
 
-  for (let i = 0; i < coinsArr.length; i++) {
-    // Note that the 0 - bit is to stop the coins from disappearing suddenly
-    if (coinsArr[i].y < 0 - coinsArr[i].radius * 2) {
-      // Removing one coin so that the arr. doesn't grow endlessly
-      coinsArr.splice(i, 1);
-    }
     // circle collision algo
     if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
       // console.log('collision');
@@ -147,7 +142,7 @@ function animate() {
   player.draw();
   // score placeholder
   ctx.fillStyle = "black";
-  ctx.fillText("Score: " + score, 550, 50);
+  ctx.fillText("Score: " + score, 510, 50);
   gameFrame++;
   // console.log(gameFrame);
   requestAnimationFrame(animate);
