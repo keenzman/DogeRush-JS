@@ -31,6 +31,9 @@ canvas.addEventListener("mousedown", function (event) {
   mouseObj.click = false;
 });
 
+const playerAvatar = new Image();
+playerAvatar.src = "elon.png";
+
 class Player {
   constructor() {
     /* Contains all properties of Player obj.
@@ -70,11 +73,23 @@ class Player {
       ctx.lineTo(mouseObj.horizontalPos, mouseObj.verticalPos);
       ctx.stroke();
     }
-    ctx.fillStyle = "red";
-    ctx.beginPath();
-    ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.closePath();
+    // ctx.fillStyle = "red";
+    // ctx.beginPath();
+    // ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI * 2);
+    // ctx.fill();
+    // ctx.closePath();
+
+    ctx.drawImage(
+      playerAvatar,
+      this.frameX * this.spriteWidth,
+      this.frameY * this.spriteHeight,
+      this.spriteWidth,
+      this.spriteHeight,
+      this.xAxis - 50,
+      this.yAxis - 55,
+      this.spriteWidth / 5,
+      this.spriteHeight / 5
+    );
   }
 }
 const player = new Player();
@@ -145,7 +160,7 @@ function animate() {
   player.draw();
   // score placeholder
   ctx.fillStyle = "black";
-  ctx.fillText("Score: " + score, 510, 50);
+  ctx.fillText("wow_suchCoins: " + score, 270, 50);
   gameFrame++;
   // console.log(gameFrame);
   requestAnimationFrame(animate);
