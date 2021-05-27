@@ -46,21 +46,21 @@ class Player {
     this.frameY = 0;
     this.frame = 0;
     // 1992/4 because there are 4 cols
-    this.spriteWidth = 498;
+    this.spriteWidth = 496;
     // 981/3 since there are 3 rows (in the spritesheet)
-    this.spriteHeight = 327;
+    this.spriteHeight = 701;
   }
   // update player pos
   update() {
-    const dx = this.xAxis - mouseObj.horizontalPos;
-    const dy = this.yAxis - mouseObj.verticalPos;
+    const distanceBetweenXAxis = this.xAxis - mouseObj.horizontalPos;
+    const distanceBetweenYAxis = this.yAxis - mouseObj.verticalPos;
     // We want both x and y to change, so no else conditions
     // The 30 is used to stop the player teleporting instantly. Basically acts as delay.
     if (mouseObj.horizontalPos != this.xAxis) {
-      this.xAxis -= dx / 5;
+      this.xAxis -= distanceBetweenXAxis / 5;
     }
     if (mouseObj.verticalPos != this.yAxis) {
-      this.yAxis -= dy / 5;
+      this.yAxis -= distanceBetweenYAxis / 5;
     }
   }
   draw() {
@@ -86,16 +86,19 @@ class Coin {
     this.xAxis = Math.random() * canvas.width;
     // The coins rise up from the bottom edge of canvas + 100
     this.yAxis = canvas.height + 100;
-    this.radius = 50;
+    this.radius = 40;
     this.speed = Math.random() * 5 + 1;
     this.distance;
     this.counted = false;
   }
   update() {
     this.yAxis -= this.speed;
-    const dx = this.xAxis - player.xAxis;
-    const dy = this.yAxis - player.yAxis;
-    this.distance = Math.sqrt(dx * dx + dy * dy);
+    const distanceBetweenHorizontalAxis = this.xAxis - player.xAxis;
+    const distanceBetweenVerticalAxis = this.yAxis - player.yAxis;
+    this.distance = Math.sqrt(
+      distanceBetweenHorizontalAxis * distanceBetweenHorizontalAxis +
+        distanceBetweenVerticalAxis * distanceBetweenVerticalAxis
+    );
   }
   draw() {
     ctx.fillStyle = "goldenrod";
@@ -108,13 +111,13 @@ class Coin {
 }
 
 function handleCoin() {
-  // Every 50 frames, add a coin to the array
-  if (gameFrame % 50 == 0) {
+  // Every 30 frames, add a coin to the array
+  if (gameFrame % 30 == 0) {
     coinsArr.push(new Coin());
     // console.log(coinsArr.length);
   }
   for (let i = 0; i < coinsArr.length; i++) {
-    if (coinsArr[i].y < 0 - coinsArr[i].radius * 2) {
+    if (coinsArr[i].yAxis < 0) {
       coinsArr.splice(i, 1);
     }
     // For each elem, call associated update and draw methods
@@ -123,7 +126,7 @@ function handleCoin() {
 
     // circle collision algo
     if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
-      // console.log('collision');
+      // console.log("collision");
       // count scores by 1 for each unique coin
       if (!coinsArr[i].counted) {
         score++;
