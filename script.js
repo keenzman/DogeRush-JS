@@ -32,7 +32,7 @@ canvas.addEventListener("mousedown", function (event) {
 });
 
 const playerAvatar = new Image();
-playerAvatar.src = "elon.png";
+playerAvatar.src = "./images/elon.png";
 
 class Player {
   constructor() {
@@ -94,6 +94,9 @@ class Player {
 }
 const player = new Player();
 
+const dogeCoin = new Image();
+dogeCoin.src = "./images/doge.png";
+
 // Coins
 const coinsArr = [];
 class Coin {
@@ -122,6 +125,14 @@ class Coin {
     ctx.fill();
     ctx.closePath();
     ctx.stroke();
+
+    ctx.drawImage(
+      dogeCoin,
+      this.xAxis - 46,
+      this.yAxis - 40,
+      this.radius * 2.2,
+      this.radius * 2.2
+    );
   }
 }
 
@@ -132,15 +143,14 @@ function handleCoin() {
     // console.log(coinsArr.length);
   }
   for (let i = 0; i < coinsArr.length; i++) {
-    if (coinsArr[i].yAxis < 0) {
-      coinsArr.splice(i, 1);
-    }
     // For each elem, call associated update and draw methods
     coinsArr[i].update();
     coinsArr[i].draw();
-
+    if (coinsArr[i].yAxis < 0) {
+      coinsArr.splice(i, 1);
+    }
     // circle collision algo
-    if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
+    else if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
       // console.log("collision");
       // count scores by 1 for each unique coin
       if (!coinsArr[i].counted) {
@@ -152,17 +162,29 @@ function handleCoin() {
   }
 }
 
+const background = new Image();
+background.src = "./images/mars.png";
+
+function handleBackground() {
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height * 1.5);
+}
+
 // Animation Loop
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  handleBackground();
   handleCoin();
   player.update();
   player.draw();
   // score placeholder
-  ctx.fillStyle = "black";
+  ctx.fillStyle = "white";
   ctx.fillText("wow_suchCoins: " + score, 270, 50);
   gameFrame++;
   // console.log(gameFrame);
   requestAnimationFrame(animate);
 }
 animate();
+
+window.addEventListener("resize", function () {
+  canvasPosition = canvas.getBoundingClientRect();
+});
