@@ -18,3 +18,15 @@ const mouse = {
   y: canvas.height / 2,
   click: false,
 };
+
+canvas.addEventListener("mousedown", function (event) {
+  mouse.click = true;
+  // getting the x,y coords from the bounded canvas positions
+  mouse.x = event.x - canvasPosition.left;
+  mouse.y = event.y - canvasPosition.top;
+  // console.log(mouse.x, mouse.y)
+});
+
+canvas.addEventListener("mousedown", function (event) {
+  mouse.click = false;
+});
