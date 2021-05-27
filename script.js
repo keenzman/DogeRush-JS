@@ -1,22 +1,20 @@
-const canvas = document.getElementById("#canvas");
+// Canvas Setup
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-// canvas.width = 850;
-// canvas.height = 450;
+canvas.width = 800;
+canvas.height = 500;
 
-let size = 0;
+let score = 0;
+let gameFrame = 0;
+ctx.font = "50px Georgia";
 
-function animate() {
-  // ctx.fillStyle = "red";
-  // ctx.beginPath();
-  // ctx.arc(100, 300, size, 0, Math.PI * 2);
-  // ctx.closePath();
-  // ctx.fill();
-  // ctx.stroke();
+// Mouse Interaction
+// Gets the (0,0) coords from inside the box we defined, and not the edge of the default browser canvas
+let canvasPosition = canvas.getBoundingClientRect();
+console.log(canvasPosition);
 
-  ctx.beginPath();
-  ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-  ctx.stroke();
-
-  requestAnimationFrame(animate);
-}
-animate();
+const mouse = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  click: false,
+};
