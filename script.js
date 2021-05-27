@@ -95,9 +95,9 @@ class Coin {
     this.yAxis -= this.speed;
     const distanceBetweenHorizontalAxis = this.xAxis - player.xAxis;
     const distanceBetweenVerticalAxis = this.yAxis - player.yAxis;
-    this.distance = Math.sqrt(
-      distanceBetweenHorizontalAxis * distanceBetweenHorizontalAxis +
-        distanceBetweenVerticalAxis * distanceBetweenVerticalAxis
+    this.distance = Math.hypot(
+      distanceBetweenHorizontalAxis,
+      distanceBetweenVerticalAxis
     );
   }
   draw() {
