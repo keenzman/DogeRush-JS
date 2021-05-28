@@ -47,7 +47,7 @@
 }
 
 .main .button__container .button__reset {
-  font-family: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  font-family: monospace;
   height: 60px;
   width: 180px;
   background-color: #27eebe;

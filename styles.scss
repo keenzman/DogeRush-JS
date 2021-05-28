@@ -32,7 +32,7 @@ $main-font: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
     align-items: center;
     justify-content: center;
     .button__reset {
-      font-family: $main-font;
+      font-family: monospace;
       height: 60px;
       width: 180px;
       background-color: #27eebe;
@@ -55,15 +55,3 @@ $main-font: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
     }
   }
 }
-
-// button {
-//   padding: 15px 80px;
-//   // background-color: rgba(0, 136, 169, 1);
-//   background-color: #27eebe;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   color: #2d5dbc;
-//   // font-family: $secondary-font;
-//   // font-size: 1.2rem;
-// }
