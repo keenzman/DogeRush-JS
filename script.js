@@ -188,3 +188,13 @@ animate();
 window.addEventListener("resize", function () {
   canvasPosition = canvas.getBoundingClientRect();
 });
+
+// const reset = document.querySelector(".button__reset");
+// reset.addEventListener("click", () => {
+//   animate();
+// });
+
+const reset = document.querySelector(".button__reset");
+reset.addEventListener("click", () => {
+  score = 0;
+});

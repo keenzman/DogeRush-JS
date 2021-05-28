@@ -8,18 +8,62 @@
 
 $main-font: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
 
-body {
+.main {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #f6f6f6;
 
   .canvas__container {
-    width: 800px;
-    height: 500px;
-    border: 3px solid #ccc;
-    box-shadow: 5px 5px 6px -6px rgb(151, 151, 151);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .canvas {
+      width: 800px;
+      height: 500px;
+      border: 3px solid #ccc;
+      box-shadow: 5px 5px 6px -6px rgb(151, 151, 151);
+      margin-bottom: 20px;
+      margin-top: 50px;
+    }
+  }
+
+  .button__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .button__reset {
+      font-family: $main-font;
+      height: 60px;
+      width: 180px;
+      background-color: #27eebe;
+      border-radius: 3px;
+      border: 1px solid #c4c4c4;
+      background-color: transparent;
+      font-size: 2rem;
+      color: #2d5dbc;
+      transition: all 0.3s ease 0s;
+      background-image: linear-gradient(
+        transparent,
+        transparent 50%,
+        rgba(218, 117, 184, 0.13)
+      );
+      box-shadow: 5px 5px 6px -6px rgb(151, 151, 151);
+    }
+
+    .button__reset:hover {
+      background-color: rgba(247, 206, 255, 0.979);
+    }
   }
 }
+
+// button {
+//   padding: 15px 80px;
+//   // background-color: rgba(0, 136, 169, 1);
+//   background-color: #27eebe;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   color: #2d5dbc;
+//   // font-family: $secondary-font;
+//   // font-size: 1.2rem;
+// }
