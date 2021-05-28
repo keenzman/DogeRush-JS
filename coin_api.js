@@ -10,7 +10,7 @@ request(
     apiKey.key
 )
   .then((r1) => {
-    console.log(r1);
+    // console.log(r1);
     let x1 = JSON.parse(r1.target.responseText);
     // console.log(x1.data[6].symbol);
     // console.log(x1.data[6].quote.USD.price);
@@ -21,10 +21,10 @@ request(
     let changeInPrice = x1.data[6].quote.USD.percent_change_90d;
 
     container.innerHTML += `<article>
+    <div class="doge">
     <h2>${symbol}</h2>
-    <div>
-      <p>The current price is $${price} ... SUCH COOL</p>
-      <p>The percentage change in USD over the last 90 days is ${changeInPrice}% ... MUCH WOW</p>
+      <p>The current price is $${price} ... <strong>SUCH COOL</strong></p>
+      <p>The percentage change in USD over the last 90 days is ${changeInPrice}% ... <strong>MUCH WOW</strong></p>
     </div>
   </article>
   `;

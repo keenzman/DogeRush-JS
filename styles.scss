@@ -48,10 +48,23 @@ $main-font: "Fira Code", "Fira Mono", "Roboto Mono", monospace;
         rgba(218, 117, 184, 0.13)
       );
       box-shadow: 5px 5px 6px -6px rgb(151, 151, 151);
+      margin-bottom: 30px;
     }
 
     .button__reset:hover {
       background-color: rgba(247, 206, 255, 0.979);
+    }
+  }
+
+  .doge_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .doge {
+      // text-align: center;
+      color: #2d5dbc;
+      font-family: monospace;
+      font-size: 0.9rem;
     }
   }
 }
