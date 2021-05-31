@@ -152,12 +152,6 @@ const customConfetti = {
   startVelocity: 50,
   spread: 220,
   scalar: 0.3,
-
-  // origin: {
-  //   x: Math.random(),
-  //   // since they fall down, start a bit higher than random
-  //   y: Math.random() - 0.2,
-  // },
 };
 
 function handleCoin() {
