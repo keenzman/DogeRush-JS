@@ -136,6 +136,10 @@ class Coin {
   }
 }
 
+let coinSound = new Howl({
+  src: ["./sounds/coin.wav"],
+});
+
 function handleCoin() {
   // Every 30 frames, add a coin to the array
   if (gameFrame % 30 == 0) {
@@ -155,6 +159,7 @@ function handleCoin() {
       // count scores by 1 for each unique coin
       if (!coinsArr[i].counted) {
         score++;
+        coinSound.play();
         coinsArr[i].counted = true;
         coinsArr.splice(i, 1);
       }

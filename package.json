@@ -1,0 +1,22 @@
+{
+  "name": "dogerush",
+  "version": "1.0.0",
+  "description": "",
+  "main": "coin_api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keenzman/DogeRush-JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keenzman/DogeRush-JS/issues"
+  },
+  "homepage": "https://github.com/keenzman/DogeRush-JS#readme",
+  "dependencies": {
+    "howler": "^2.2.1"
+  }
+}

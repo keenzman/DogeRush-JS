@@ -9,16 +9,16 @@ request(
   "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=" +
     apiKey.key
 )
-  .then((r1) => {
+  .then((response) => {
     // console.log(r1);
-    let x1 = JSON.parse(r1.target.responseText);
+    let coinData = JSON.parse(response.target.responseText);
     // console.log(x1.data[6].symbol);
     // console.log(x1.data[6].quote.USD.price);
     // console.log(x1.data[6].quote.USD.percent_change_90d);
 
-    const symbol = x1.data[6].symbol;
-    let price = x1.data[6].quote.USD.price;
-    let changeInPrice = x1.data[6].quote.USD.percent_change_90d;
+    const symbol = coinData.data[6].symbol;
+    let price = coinData.data[6].quote.USD.price;
+    let changeInPrice = coinData.data[6].quote.USD.percent_change_90d;
 
     container.innerHTML += `<article>
     <div class="doge">
@@ -31,12 +31,12 @@ request(
   })
   .catch();
 
-function request(method, url) {
+function request(httpMethod, apiUrl) {
   return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open(method, url);
-    xhr.onload = resolve;
-    xhr.onerror = reject;
-    xhr.send();
+    let xmlRequest = new XMLHttpRequest();
+    xmlRequest.open(httpMethod, apiUrl);
+    xmlRequest.onload = resolve;
+    xmlRequest.onerror = reject;
+    xmlRequest.send();
   });
 }
