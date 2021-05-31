@@ -1,4 +1,3 @@
-// import { Howl, Howler } from "howler.js";
 // Canvas Setup
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -148,6 +147,19 @@ let coinSound = new Howl({
   src: ["./sounds/coin.wav"],
 });
 
+const customConfetti = {
+  particleCount: 150,
+  startVelocity: 30,
+  spread: 180,
+  scalar: 0.1,
+
+  origin: {
+    x: Math.random(),
+    // since they fall down, start a bit higher than random
+    y: Math.random() - 0.2,
+  },
+};
+
 function handleCoin() {
   // Every 30 frames, add a coin to the array
   if (gameFrame % 30 == 0) {
@@ -168,6 +180,7 @@ function handleCoin() {
       if (!coinsArr[i].counted) {
         score++;
         coinSound.play();
+        confetti(customConfetti);
         coinsArr[i].counted = true;
         coinsArr.splice(i, 1);
       }
