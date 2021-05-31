@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/keenzman/DogeRush-JS#readme",
   "dependencies": {
+    "confetti-js": "^0.0.18",
     "howler": "^2.2.1"
   }
 }

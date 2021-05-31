@@ -1,4 +1,4 @@
-import { Howl, Howler } from "howler.js";
+import { Howl, Howler } from "./howler.js";
 // Canvas Setup
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -19,6 +19,13 @@ const mouseObj = {
   verticalPos: canvas.height / 2,
   click: false,
 };
+
+let bgm = new Howl({
+  src: ["./sounds/bgm.mp3"],
+  autoplay: true,
+  loop: true,
+  volume: 0.3,
+});
 
 canvas.addEventListener("mousedown", function (event) {
   mouseObj.click = true;
@@ -49,9 +56,7 @@ class Player {
     this.frameX = 0;
     this.frameY = 0;
     this.frame = 0;
-    // 1992/4 because there are 4 cols
     this.spriteWidth = 496;
-    // 981/3 since there are 3 rows (in the spritesheet)
     this.spriteHeight = 701;
   }
   // update player pos
@@ -152,7 +157,7 @@ function handleCoin() {
     coinsArr[i].update();
     coinsArr[i].draw();
     if (coinsArr[i].yAxis < 0) {
-      coinsArr.splice(i, 1);
+      coinsArr.pop();
     }
     // circle collision algo
     else if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
@@ -203,4 +208,6 @@ window.addEventListener("resize", function () {
 const reset = document.querySelector(".button__reset");
 reset.addEventListener("click", () => {
   score = 0;
+  mouseObj.horizontalPos;
+  mouseObj.verticalPos;
 });
