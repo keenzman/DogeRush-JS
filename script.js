@@ -1,4 +1,4 @@
-// import { Howl, Howler } from "./howler.js";
+import { Howl, Howler } from "howler.js";
 // Canvas Setup
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
