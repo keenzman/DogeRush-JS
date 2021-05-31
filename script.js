@@ -149,15 +149,15 @@ let coinSound = new Howl({
 
 const customConfetti = {
   particleCount: 150,
-  startVelocity: 30,
-  spread: 180,
-  scalar: 0.1,
+  startVelocity: 50,
+  spread: 220,
+  scalar: 0.3,
 
-  origin: {
-    x: Math.random(),
-    // since they fall down, start a bit higher than random
-    y: Math.random() - 0.2,
-  },
+  // origin: {
+  //   x: Math.random(),
+  //   // since they fall down, start a bit higher than random
+  //   y: Math.random() - 0.2,
+  // },
 };
 
 function handleCoin() {
