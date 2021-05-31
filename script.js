@@ -223,6 +223,4 @@ window.addEventListener("resize", function () {
 const reset = document.querySelector(".button__reset");
 reset.addEventListener("click", () => {
   score = 0;
-  mouseObj.horizontalPos;
-  mouseObj.verticalPos;
 });
