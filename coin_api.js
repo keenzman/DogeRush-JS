@@ -11,7 +11,7 @@ request(
 )
   .then((response) => {
     let coinData = JSON.parse(response.target.responseText);
-    console.log(coinData.data[6]);
+    // console.log(coinData.data[6]);
     // console.log(coinData.data[6].quote.USD.price);
     // console.log(coinData.data[6].quote.USD.percent_change_90d);
 
