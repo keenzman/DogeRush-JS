@@ -13,7 +13,6 @@ request(
     let coinData = JSON.parse(response.target.responseText);
     // console.log(coinData);
     // console.log(coinData.data[6].quote.USD.price);
-    // console.log(coinData.data[6].quote.USD.percent_change_90d);
 
     const symbol = coinData.data[6].symbol;
     let price = coinData.data[6].quote.USD.price;
