@@ -216,5 +216,5 @@ window.addEventListener("resize", function () {
 
 const reset = document.querySelector(".button__reset");
 reset.addEventListener("click", () => {
-  score = 0;
+  window.location.reload();
 });
