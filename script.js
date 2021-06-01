@@ -126,12 +126,12 @@ class Coin {
     );
   }
   draw() {
-    // ctx.fillStyle = "goldenrod";
-    // ctx.beginPath();
-    // ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI * 2);
-    // ctx.fill();
-    // ctx.closePath();
-    // ctx.stroke();
+    ctx.fillStyle = "goldenrod";
+    ctx.beginPath();
+    ctx.arc(this.xAxis, this.yAxis, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.closePath();
+    ctx.stroke();
 
     ctx.drawImage(
       dogeCoin,
@@ -164,8 +164,8 @@ function handleCoin() {
     // For each elem, call associated update and draw methods
     coinsArr[i].update();
     coinsArr[i].draw();
-    if (coinsArr[i].yAxis < 0) {
-      coinsArr.pop();
+    if (coinsArr[i].yAxis < 0 - coinsArr[i].radius * 2) {
+      coinsArr.splice(i, 1);
     }
     // circle collision algo
     else if (coinsArr[i].distance < coinsArr[i].radius + player.radius) {
