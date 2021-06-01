@@ -12,19 +12,19 @@ request(
   .then((response) => {
     // console.log(r1);
     let coinData = JSON.parse(response.target.responseText);
-    // console.log(x1.data[6].symbol);
-    // console.log(x1.data[6].quote.USD.price);
-    // console.log(x1.data[6].quote.USD.percent_change_90d);
+    console.log(coinData.data[6]);
+    // console.log(coinData.data[6].quote.USD.price);
+    // console.log(coinData.data[6].quote.USD.percent_change_90d);
 
     const symbol = coinData.data[6].symbol;
     let price = coinData.data[6].quote.USD.price;
-    let changeInPrice = coinData.data[6].quote.USD.percent_change_90d;
+    let circulatingSupply = coinData.data[6].circulating_supply;
 
     container.innerHTML += `<article>
     <div class="doge">
     <h2>${symbol}</h2>
       <p>The current price is $${price} ... <strong>SUCH COOL</strong></p>
-      <p>The percentage change in USD over the last 90 days is ${changeInPrice}% ... <strong>MUCH WOW</strong></p>
+      <p>Every minute, over 10k new coins are mined! The current circulating supply is ${circulatingSupply} ... <strong>MUCH WOW</strong></p>
     </div>
   </article>
   `;
