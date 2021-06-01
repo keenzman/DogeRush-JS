@@ -10,7 +10,6 @@ request(
     apiKey.key
 )
   .then((response) => {
-    // console.log(r1);
     let coinData = JSON.parse(response.target.responseText);
     console.log(coinData.data[6]);
     // console.log(coinData.data[6].quote.USD.price);
